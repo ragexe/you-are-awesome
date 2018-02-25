@@ -23,7 +23,6 @@ const createProtoMagicObject = () => {
     let result = new Function();
     result.prototype = Function.prototype;
     return result
-
 };
 
 const incrementor = () => {
@@ -53,9 +52,9 @@ const asyncIncrementor = () => {
     })
 };
 
-const createIncrementer = () => {
+const createIncrementer = (start) => {
     createIncrementer.incrementer = createIncrementer.incrementer || {
-        value: 0,
+        value: (start) ? start : 0,
         next: () => {
             return {
                 done: false,
@@ -79,13 +78,33 @@ const returnBackInSecond = (param) => {
 
     })
 };
-const getDeepPropertiesCount = () => {
+
+const getDeepPropertiesCount = (object) => {
+    delete Object.prototype.property;
+    let counter = 0;
+
+    inner(object);
+
+    function inner(object){
+        for (let prop in object) {
+            counter++;
+            inner(object[prop])
+        }
+    }
+
+    return counter
 };
+
 const createSerializedObject = () => {
+    return new String();
 };
+
 const toBuffer = () => {
+    // TODO notify @yankouskia
 };
-const sortByProto = () => {
+
+const sortByProto = (arr) => {
+    return arr.sort((left, right) => left.__proto__ - right.__proto__)
 };
 
 exports.createEnumerableProperty = createEnumerableProperty;

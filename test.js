@@ -132,7 +132,7 @@ describe(('You are awesome, aren\'t you?'), () => {
     }
 
     const count1 = getDeepPropertiesCount(obj);
-    assert.equal(count1, 400)
+    assert.equal(count1, 400);
 
     for (let i = 0; i < 100; i++) {
       temp[i] = {};
